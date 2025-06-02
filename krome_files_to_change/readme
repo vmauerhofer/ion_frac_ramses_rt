@@ -1,0 +1,9 @@
+Hello,
+
+To install Krome on your computer, do
+git clone https://bitbucket.org/tgrassi/krome.git
+where you want the krome repository to be.
+
+Replace the files ......./krome/src/krome.f90 and ......./krome/src/krome_subs.f90 by the files that are here.
+This is because I modified the krome_equilibrium routine in krome.f90, and I added a routine to set directly the
+photoionization rates without using an SED, in krome_subs.f90

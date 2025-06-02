@@ -66,8 +66,7 @@ class ChemicalNetworkBuilder:
 # === Return name of an atom with atomic number Z ===
     def get_element_name(self, Z):
         return self.element_names[Z-1]
-
-
+    
 # === Build a chemical network file, to be read by KROME ===
     def build_krome_network(self, elements: dict[str, int], output_path: str) -> None:
         """
@@ -83,14 +82,17 @@ class ChemicalNetworkBuilder:
     
         # Header
         network += '@var: T = Tgas\n\n'
-        network += '# RECOMBINATION from Badnell website\nhttp://amdpp.phys.strath.ac.uk/tamoc/RR\n'
-        network += 'http://amdpp.phys.strath.ac.uk/tamoc/DR\n\n@format:idx,R,R,P,rate\n'
+        # Recombinations
+        network += '# RECOMBINATION from Badnell website\n#http://amdpp.phys.strath.ac.uk/tamoc/RR\n'
+        network += '#http://amdpp.phys.strath.ac.uk/tamoc/DR\n\n@format:idx,R,R,P,rate\n'
 
         lines, count = self._add_dummy_recombinations(count)
         network += '\n'.join(lines) + '\n\n'
-    
+
+        ## Looping on the elements
         for symbol, max_ion in elements.items():
             Z = self.element_names.index(symbol) + 1  # Atomic number
+            # Looping on the ionization stages
             for ion_stage in range(max_ion):
                 left = symbol + '+' * (ion_stage + 1)
                 right = symbol + '+' * ion_stage
