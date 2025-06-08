@@ -66,6 +66,14 @@ class ChemicalNetworkBuilder:
 # === Return name of an atom with atomic number Z ===
     def get_element_name(self, Z):
         return self.element_names[Z-1]
+
+# === Return atomic number of a given element ===
+    def get_atomic_number(self, element):
+        element = element.capitalize()
+        try:
+            return self.element_names.index(element) + 1
+        except ValueError:
+            raise ValueError(f"Element '{element}' not recognized. Allowed: {self.element_names}")
     
 # === Build a chemical network file, to be read by KROME ===
     def build_krome_network(self, elements: dict[str, int], output_path: str) -> None:
