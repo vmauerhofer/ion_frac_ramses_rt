@@ -1,0 +1,54 @@
+!-------------------------------------------------------------------------------- 
+[ion_fractions] 
+  repository = /Xnfs/sphinx/sphinx/06_F2000/01_SPHINX20/ 
+  repository_restart = /Xnfs/cosmos/vmauerhofer/sphinx20/Katz_restart/ 
+  snapnum = 63 
+  output_path = /Xnfs/cosmos/vmauerhofer/sphinx20/ions//00063/C_Si_restart//C_Si/ 
+  csn_file = csn_C_Si_63 
+  verbose = T 
+ 
+!-------------------------------------------------------------------------------- 
+[UVB] 
+  UVB         = 500000000.00 
+  threshold   = 100.00 
+  bin1_factor = 100.00 
+ 
+!-------------------------------------------------------------------------------- 
+[ramses] 
+  star_reading_method = default 
+  self_shielding   = F 
+  ramses_rt        = T 
+  verbose          = T 
+  cosmo            = T 
+  use_initial_mass = T 
+  use_proper_time  = T 
+  read_rt_variables = T 
+  itemp  = 5 
+  imetal = 6 
+  ihii   = 7 
+  iheii  = 8 
+  iheiii = 9 
+  iGamma1= 11
+
+!-------------------------------------------------------------------------------- 
+[worker] 
+  verbose          = T 
+
+!-------------------------------------------------------------------------------- 
+[master] 
+  verbose          = T 
+
+!-------------------------------------------------------------------------------- 
+[spectra] 
+  sed_dir = /Xnfs/cosmos/vmauerhofer/seds/bpass_v221/bpass_v221_135_100/ 
+  nSEDgroups = 4
+  use_rt_restart = F
+  nSEDgroups_restart = 2 
+  group_decomp = 6.000, 13.600, 24.590, 54.420, 100000.0 
+  verbose          = T 
+
+!-------------------------------------------------------------------------------- 
+[krome] 
+  n_elements = 2 
+  krome_parameter_file = /Xnfs/cosmos/vmauerhofer/sphinx20/ions//00063/C_Si_restart//params_krome.dat 
+  verbose = T 
