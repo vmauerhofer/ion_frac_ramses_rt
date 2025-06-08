@@ -29,6 +29,7 @@ def generate_krome_module(elements_dict, krome_path, output_folder_name=None):
     builder = ChemicalNetworkBuilder()
     network_output_path = os.path.join(output_folder_name, f"network_{str_elements}")
     builder.build_krome_network(elements_dict, network_output_path)
+    print("KROME chemical network ready")
 
     # Clean old KROME build
     build_path = os.path.join(krome_path, "build")
@@ -51,6 +52,11 @@ def generate_krome_module(elements_dict, krome_path, output_folder_name=None):
     for file in os.listdir(build_path):
         shutil.copy(os.path.join(build_path, file), output_folder_name)
     print(f"Output files moved to {output_folder_name}")
+    # Due to KROME's design, one of the file must be at the location of the src code:
+    shutil.copy(
+    os.path.join(output_folder_name, "reactions_verbatim.dat"),
+    "src_f90"
+    )
 
     # Compile the combined krome fortran files and the local src_f90 files
     compile_fortran_code(makefile_dir="src_f90", krome_f90_dir=output_folder_name)
